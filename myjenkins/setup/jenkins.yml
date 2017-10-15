@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+    - name:
+      git:
+        repo: "{{ item.repo }}"
+        dest: "{{ item.dest }}"
+      with_items:
+        - { repo: "https://github.com/biderbek/ansible-vagrant-examples.git", dest: ansible-vagrant-examples }
+        - { repo: "https://github.com/emmetog/ansible-jenkins", dest: emmetog-jenkins }
+        - { repo: "https://github.com/geerlingguy/ansible-role-jenkins.git", dest: ansible-role-jenkins }
