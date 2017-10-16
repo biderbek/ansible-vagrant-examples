@@ -1,14 +1,18 @@
+---
 - hosts: jenkins
+  gather_facts: yes
 
   vars:
-    jenkins_version: "2.73.1"
-    jenkins_url: http://10.10.10.10
-    jenkins_port: 80
-    jenkins_install_via: "apt"
-    jenkins_include_secrets: true
-    jenkins_include_custom_files: true
-    jenkins_custom_plugins:
-        - "openstack-cloud-plugin/openstack-cloud.jpi"
+    jenkins_http_port: 8080
+    jenkins_admin_username: admin
+    jenkins_admin_password: admin
+
+  vars_files:
+    - vars/main.yml
 
   roles:
-    - emmetog.jenkins
+    - geerlingguy.firewall
+    - geerlingguy.ntp
+    - geerlingguy.git
+    - geerlingguy.java
+    - geerlingguy.jenkins
